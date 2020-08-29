@@ -9,10 +9,10 @@ USE
 - 지정해 놓은 후 특별히 다시 USE 문을 사용하거나 다른 DB를 사용하겠다고 명시하지않는 이상 모든 SQL 문은 지정 DB에서 수행
 - Workbench에서 직접 선택해 사용 가능
 -- [Navigator] > [SCHEMAS] > 데이터베이스 선택
-/ USE 'DATABASE_NAME'
+/ USE [DATABASE_NAME]
 
 SHOW TABLES
-- 지정한 DB의 테이블 이름 확인
+- 지정한 DB의 테이블들의 이름만 확인
 / SHOW TABLES
 
 SHOW TABLE STATUS
@@ -20,7 +20,20 @@ SHOW TABLE STATUS
 / SHOW TABLE STATUS
 
 DESCRIBE (DESC)
-- 지정한 DB 내의 테이블명을 가지고 해당 테이블의 열 목록을 확인
+- 지정한 DB 내의 테이블명을 가지고 해당 테이블의 컬럼들을 확인
+/ DESCRIBE [TABLE_NAME]
+// DESC [TABLE_NAME]
+
+SELECT *
+- 요구하는 데이터를 가져오는 구문
+- 일반적으로 가장 많이 사용되는 구문
+- DB 내 테이블에서 원하는 정보 추출
+/ SELECT [COLUMN_NAME] // 추출하고자하는 컬럼의 이름 작성
+/ FROM [TABLE_NAME] // 해당 데이터를 보유하고있는 테이블의 이름 작성
+/ WHERE [CONDITION]// 원하는 데이터를 추출하기 위해 조건문을 작성
+/ GROUP BY [COLUMN_NAME | EXPR | POSITION]
+/ HAVING [CONDITION]
+/ ORDER BY [COLUMN_NAME | EXPR | POSITION]
 
 / DESCRIBE 'TABLE_NAME'
 / DESC 'TABLE_NAME'
