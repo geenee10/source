@@ -80,4 +80,44 @@ ORDER BY
 - 오름차순 정렬은 ASCENDING(ASC) 정렬
 - 내림차순 정렬은 DESCENDING(DESC) 정렬
 - ASC(오름차순)는 default 이므로 생략가능
+- 혼합사용 가능 
 / ORDER BY [COLUMN_NAME] DESC | [COLUMN_NAME]을 기준으로 내림차순 정렬
+/ ORDER BY [COLUMN_NAME_1] DESC, [COLUMN_NAME_2] ASC | [COLUMN_NAME_1]은 내림차순(기준) 기준의 틀에서 [COLUMN_NAME_2]은 오름차순 정렬
+
+DISTINCT
+- 중복되는 것은 1개씩만 보여주면서 출력
+- 테이블의 크기가 클 수록 효율적
+/ SELECT DISTINCT [COLUMN_NAME]    ┐ [TABLE_NAME] 테이블의 [COLUMN_NAME]들을 보여줄 때,
+/ FROM [TABLE_NAME]                ┘ 중복되는 [COLUMN_NAME]은 1개를 제외하고는 보여주지 않습니다.
+
+LIMIT
+- 출력 개수를 제한
+- 상위 N개만 출력하는 LIMIT 구문
+- 서버의 처리량을 많이 사용해 서버의 전반적인 성능을 나쁘게 하는 악성 쿼리문을 개선할 때 사용
+
+GROUP BY
+- 그룹으로 묶어주는 역할
+- 집계 함수 AGGREGATE FUNCTION을 함께 사용
+-- AVG() = 평균
+-- MIN() = 최소값
+-- MAX() = 최대값
+-- COUNT() = 행의 개수
+-- COUNT(DISTINCT) = 중복으로 제외된 행의 개수
+-- STDEV() = 표준 편차
+-- VARIANCE() = 분산
+- 효율적인 데이터 그룹화
+- 읽기 좋게하기 위해 별칭(ALIS) 사용
+/ GROUP BY [COLUMN_NAME]
+
+HAVING
+- WHERE과 비슷한 개념으로 조건 제한
+- 집계 함수에 대해서 조건 제한하는 편리한 개념
+! HAVING 절은 GROUP BY 절 다음에 나와야함
+/ HAVING MAX([COLUMN_NAME]) > 1000000
+
+ROLLUP / 추가 공부 필요
+- 총합 또는 중간합계가 필요할 경우 사용
+- GROUP BY 절과 함께 WITH ROLLUP 문 사용
+/ SELECT [COLUMN_NAME_1], [COLUMN_NAME_2], SUM([COLUMN_NAME_3])
+/ FROM [TABLE_NAME]
+/ GROUP BY [COLUMN_NAME_1], [COLUMN_NAME_2] WITH ROLLUP
